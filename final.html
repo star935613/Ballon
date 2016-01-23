@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html style="background-image: url('./bg.jpg')">
+<head>
+	<title>IOS 期末作業</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- <button id = "test">Test</button>
+<p></p>
+<img id="balloon" src="http://img.sc115.com/uploads2/sc/png/3435/Pink.png"
+> -->
+
+<div id="balloon">
+	<div id='score'></div>
+	<div id='xscore'></div>
+</div>
+<img id='h1' src="./h.png">
+<img id='h2' src="./h.png">
+<img id='h3' src="./h.png">
+
+<div id="fin">
+	<div id="fin_score"></div>
+	<button onclick="location.reload();">Play again ?</button>
+<div>
+
+
+
+<script type="text/javascript">
+
+	var img = document.createElement('img');
+	var box = document.getElementById("balloon");
+	var fin = document.getElementById("fin");
+	var score = 0;
+	var up = 0, speed = 1;
+	var lr;
+	var i;
+	var j=3;
+	var bcolor;
+	var bstring;
+	var xs=1;
+
+	$(document).ready(function(){
+		// console.log("test");
+		make();
+		$("#balloon img").on('click', function(){
+			press();
+		});
+	});
+	
+	function move()
+	{ 
+		if (img.style.buttom == "100%") {
+			clearInterval(i);
+		}
+		//console.log(img.height);
+		// up = up + 1;
+		up = up + speed;
+		if (up > 100) {
+			j--;
+			lr = Math.floor(Math.random()*90 + 1);
+			img.style.left = lr.toString() + "%";
+			if (j == 2){
+				document.getElementById("h3").style.display = "none";
+			}
+			else if (j == 1){
+				document.getElementById("h2").style.display = "none";
+			}
+			else if (j == 0){
+				document.getElementById("h1").style.display = "none";
+				final();
+			}
+			up=0;
+		}
+		//console.log(up);
+		img.style.bottom=up.toString() + "%";
+	} 
+	
+	function make()
+	{
+		img.src = "./balloon1.png";
+		img.style.position="absolute";
+		img.style.width="10%";
+		img.style.bottom="0%";
+		lr = Math.floor(Math.random()*90 + 1);
+		img.style.left = lr.toString() + "%";
+	       
+		box.appendChild(img);
+		img.addEventListener("click", press());
+		i = setInterval("move()", 100, false);
+	}
+
+	function press() 
+	{
+		// console.log("press " + up);
+		if (up != 0) {
+			// box.removeChild(img);
+			lr = Math.floor(Math.random()*90 + 1);
+			img.style.left = lr.toString() + "%";
+			img.style.bottom="0%";
+			up = 0;
+			speed+=0.1;
+			bstring=img.src;
+			console.log("press " + bstring);
+			if(bstring.endsWith("1.png"))
+				xs=1;
+			if(bstring.endsWith("2.png"))
+				xs=2;
+			if(bstring.endsWith("3.png"))
+				xs=3;
+			if(bstring.endsWith("4.png"))
+				xs=4;
+			if(bstring.endsWith("5.png"))
+				xs=5;
+			if(bstring.endsWith("6.png"))
+				xs=6;
+
+			score+=xs;
+
+			bclor = Math.floor(Math.random()*6 + 1);
+			switch(bclor)
+			{
+				case 1:
+					img.src = "./balloon1.png";
+					break;
+				case 2:
+					img.src = "./balloon2.png";
+					break;
+				case 3:
+					img.src = "./balloon3.png";
+					break;
+				case 4:
+					img.src = "./balloon4.png";
+					break;
+				case 5:
+					img.src = "./balloon5.png";
+					break;
+				case 6:
+					img.src = "./balloon6.png";
+					break;
+			}
+		}
+		document.getElementById("score").innerHTML = score;
+		document.getElementById("xscore").innerHTML = "+" + xs + "point";
+	}
+
+
+	function final() {
+		console.log("SCORE");
+		clearInterval(i);
+		box.style.display = "none";
+		document.getElementById("fin_score").innerHTML = "SCORE\t" + score;
+		fin.style.display = "block";
+		// location.reload();
+	}
+	
+</script>
+
+</body>
+</html>

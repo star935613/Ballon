@@ -1,0 +1,38 @@
+
+#score {
+	background: #ffa500;
+	color: white;
+	font-size: 50px;
+	position: inherit;
+}
+#xscore {
+	background: #ffa500;
+	color: black;
+	font-size: 24px;
+	position: relative;
+}
+
+#fin {
+	font-size: 500%;
+	position: inherit;
+	display: none;
+}
+
+
+#h1,#h2,#h3{
+	width: 5%;
+	position: absolute;
+	top: 0%;
+}
+
+#h1 {
+	left: 94%;
+}
+
+#h2 {
+	left: 88%;
+}
+
+#h3 {
+	left: 82%;
+}
